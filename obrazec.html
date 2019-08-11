@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>eFarmacevt - Obrazec za vnos novega pacienta</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+<table style="text-align: left; width: 100%;" border="1" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;">
+      
+      <form>
+        <div style="text-align: center;"> <big><span style="font-weight: bold;">Obrazec za vnos novega pacienta</span></big><br>
+        <br>
+Ime:<br>
+        <input id="polje_ime" style="font-weight: bold;" type="text"><br>
+<br>
+Priimek:<br>
+        <input id="polje_priimek" style="font-weight: bold;" type="text"><br>
+<br>
+Datum rojstva ('leto'-'mesec'-'dan'):<br>
+        <input id="polje_starost" style="font-weight: bold;" type="text"><br>
+<br>
+Te&#382;a:<br>
+        <input id="polje_teza" style="font-weight: bold;" type="text"> <br>
+<br>
+Vi&#353;ina:<br>
+        <input id="polje_visina" style="font-weight: bold;" type="text"><br>
+<br>
+Telesna temperatura:<br>
+        <input id="polje_temperatura" style="font-weight: bold;" type="text"><br>
+<br>
+Krvni tlak (sistoli&#269;ni):<br>
+        <input id="polje_tlaksis" style="font-weight: bold;" type="text"> <br>
+<br>
+Krvni tlak (diastoli&#269;ni):<br>
+        <input id="polje_tlakdia" style="font-weight: bold;" type="text"></div>
+        
+        <br>
+Pridobljen ehrID: <input id="dobljenehr" style="font-weight: bold;" type="text"></div>
+        </div>
+      </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
+<button value="OK" id="gumbvnosOK" onclick="vnosOK()" >OK</button><br>
+
+</body></html>

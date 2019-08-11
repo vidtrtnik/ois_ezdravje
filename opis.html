@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>eZdravje :: 4. DN :: OIS 2015/2016</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px;}
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+</head>
+<body>
+
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html">eFarmacevt</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Opis delovanja aplikacije -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Opis ideje, ki jo aplikacija podpira</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Opis ideje, ki jo aplikacija podpira -->
+            Aplikacija se uporablja kot pripomoček pri izbiri zdravil. Končni uporabnik je zdravnik, ki aplikacijo uporablja kot pomoč pri izbiri ustreznih zdravil za pacienta. Zdravnik v aplikacijo vnese osnovne vitalne znake pacienta (telesno višino, težo, temperaturo, krvni tlak), ter bolezenske znake, ki jih prepozna. Aplikacija na podlagi vnesenih simptomov in osnovnih informacij, naredi poizvedbo na spletni strani 'www.lekarnar.com', nato pa iz izvorne kode izlušči imena zdravil, ki so primerna za zdravljenje pacienta. Zdravnik se nato sam odloči, če bo predlog aplikacije upošteval ali ne.
+Končni uporabnik bi lahko bil tudi bolnik, ki ima določene težave, a ne želi obiskati zdravnika. V aplikacijo vnese simptome. Aplikacija mu vrne zdravila, ki zdravijo ali blažijo njegove težave. Vsa prikazana zdravila so na voljo brez recepta in na voljo v vsaki bolje založeni lekarni, zato si jih uporabnik lahko kupi sam. Na tak način se bodo čakalne vrste v ambulantah zmanjšale, saj ljudje do zdravnika ne bodo hodili po nepotrebnem. Aplikacija pridobiva informacije o zdravilih, ki so primerna za zdravljenje vnesenih simptomov, v nekaterih osnovnih primerih pa zna tudi logično sklepati (npr. če je telesna temperatura > 37.5, bo sama dodala simptom 'vročina' na seznam.
+            <!-- KONEC: Opis ideje, ki jo aplikacija podpira -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljeni zunanji viri podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            Za zunanji vir podatkov sem uporabil spletno stran 'www.lekarnar.com'. Proces pridobivanja seznama ustreznih zdravil je naslednji: najprej generiram ustrezen url naslov, ki vsebuje simptom, na podlagi katerega želimo zdravila. Nastali url naslov pošljem YQL strežniku, ta pa pridobi celotno izvorno kodo željene strani in mi jo posreduje. Nato s preprostim algoritmom izluščim ustrezna imena zdravil.
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Master/detail načrtovalski vzorec</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Master/detail načrtovalski vzorec -->
+            Ko uporabnik vnese ehrID ali vnese nov zapis, se posodobijo vnosna polja (ime, priimek, starost, teža...). Paciente, ki so v sistem že vnešeni, lahko izbira iz padajočega seznama.
+            <!-- KONEC: Master/detail načrtovalski vzorec -->
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Uporabljena tehnika za vizualizacijo podatkov</h3>
+          </div>
+          <div class="panel-body">
+            <!-- ZAČETEK: Uporabljeni zunanji viri podatkov -->
+            Za vizualizacijo podatkov sem uporabil knjižnjico 'D3.js'. Knjižnjica omogoča hitro in preprosto vizualizacijo podatkov tipa JSON. Seznam zdravil, ki jih vrne aplikacija, je urejen po simptomih, kar omogoča pregledno vizualizacijo. Odločil sem se za drevesni prikaz, saj so podatki predstavljeni najbolj nazorno.
+            <!-- KONEC: Uporabljeni zunanji viri podatkov -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- KONEC: Opis delovanja aplikacije -->
+
+</body>
+</html>

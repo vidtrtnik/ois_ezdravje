@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>eZdravje :: 4. DN :: OIS 2015/2016</title>
+  <link href="knjiznice/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {padding-top: 70px;}
+    
+
+	.node circle {
+	  fill: #00ff00;
+	  stroke: blue;
+	  stroke-width: 6px;
+	}
+
+	.node text { font: 12px sans-serif; }
+
+	.link {
+	  fill: none;
+	  stroke: #0000ff;
+	  stroke-width: 2px;
+	}
+	
+    
+  </style>
+  <script src="knjiznice/js/jquery-2.2.3.min.js"></script>
+  <script src="knjiznice/js/bootstrap.min.js"></script>
+  <script src="knjiznice/js/koda.js"></script>
+  <script src="knjiznice/js/d3.min.js"></script>
+  <script src="knjiznice/js/d3.js"></script>
+</head>
+<body background="kamilice.jpg"> 
+  <!-- ZAČETEK: Menujska vrstica na vrhu spletne strani -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menujska-vrstica">
+          <span class="sr-only">Prikaži menu</span>
+          <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+        </button>
+        <!-- ZAČETEK: Ime vaše aplikacije -->
+        <a class="navbar-brand" href="index.html">eFarmacevt</a>
+        <!-- KONEC: Ime vaše aplikacije -->
+      </div>
+      <div class="collapse navbar-collapse" id="menujska-vrstica">
+        <ul class="nav navbar-nav">
+          <li><a href="opis.html">Opis ideje</a></li>
+          <li><a href="nacrt.html">Načrt informacijske rešitve</a></li>
+          <li onclick="generirajPodatke(1); generirajPodatke(2); generirajPodatke(3);"><a href="#">Generiranje podatkov</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- KONEC: Menujska vrstica na vrhu spletne strani -->
+
+  <!-- ZAČETEK: Vsebina aplikacije -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        
+<!-- ################################################################################################################################################# -->
+<!-- ################################################################################################################################################# -->
+<!-- ################################################################################################################################################# -->
+
+<div style="text-align: center; background-color:lightgrey;"><big style="font-weight: bold;"><big>Izberi pacienta:</big></big><br>
+<select id="glavniSeznam" name="seznam_pacientov" class="form-control input-big" style="text-align: center;" onchange="seznamSprememba()">
+<option></option>
+</select>
+<button name="gumb_dodajnovzapis" class="btn btn-primary btn-xs" onclick="odpriObrazec()">Vnesi novega pacienta</button>
+<button name="gumb_generiraj" class="btn btn-primary btn-xs" onclick="generirajPodatke(1); generirajPodatke(2); generirajPodatke(3);">Generiraj 3 paciente</button>
+<br><br>
+<div style="text-align: center;">Ali ročno vnesi ehrID:<br>
+ <input id="polje_ehrid" style="text-align: center;" class="form-control input-sm" style="font-weight: bold;" type="text">
+ <button name="gumb_poizvejpoehr" class="btn btn-primary btn-xs" onclick="poizvejPoEHR()"><big>OK</big></button><br>
+  <br>
+<table style="text-align: left; width: 100%; background-color:white;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 50%;">
+      <div style="text-align: center;"><big style="font-weight: bold;"><big>OSNOVNI PODATKI: </big></big><br>
+      <br>
+      </div>
+      <table style="text-align: left; width: 100%; background-color:white;" border="0" cellpadding="1" cellspacing="0">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top; width: 50%; font-weight: bold;"><big>Ime:<br>
+            </big></td>
+            <td id="tabela_ime">
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;"><big>Priimek:<br>
+            </big></td>
+            <td id="tabela_priimek">
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;"><big>Starost:<br>
+            </big></td>
+            <td id="tabela_starost">
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;"><big>Te&#382;a:<br>
+            </big></td>
+            <td id="tabela_teza">
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;"><big>Vi&#353;ina:<br>
+            </big></td>
+            <td id="tabela_visina">
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;"><big>Telesna temperatura:<br>
+            </big></td>
+            <td id="tabela_temperatura">
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;"><big>Krvni tlak (sistoli&#269;ni):<br>
+            </big></td>
+            <td id="tabela_tlaksis">
+            </td>
+          </tr>
+          <tr>
+            <td style="vertical-align: top; font-weight: bold;"><big>Krvni tlak (diastoli&#269;ni):<br>
+            </big></td>
+            <td id="tabela_tlakdia">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      </td>
+      <td style="vertical-align: top; width: 50%; text-align: center;"><big style="font-weight: bold;"><big>SIMPTOMI:<br><br>
+      </big></big>
+      <table style="text-align: left; width: 100%;background-color:white;" border="0" cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="vertical-align: top; width: 50%;"><br>
+            <select id="seznamSimptomov" name="seznam_simptomov" class="form-control input-medium">
+<option>Prebava</option>
+<option>Utrujenost</option>
+<option>Stres</option>
+<option>Prehlad</option>
+<option>Draženje</option>
+<option>Driska</option>
+<option>Hripavost</option>
+<option>Živčnost</option>
+<option>Napenjanje</option>
+<option>Slabokrvnost</option>
+<option>Kašelj</option>
+<option>Holesterol</option>
+<option>Krči</option>
+<option>Zaprtje</option>
+<option>Napihnjenost</option>
+<option>Karies</option>
+<option>Vročina</option>
+<option>Tlak</option>
+<option>Teža</option>
+</select>
+            </td>
+            <td style="vertical-align: top; width: 50%;"><br>
+            <button name="gumb_dodajnovzapis" onclick="dodajSimptom()"><big>Dodaj simptom</big></button>
+            <button name="gumb_dodajnovzapis" onclick="odstraniVseSimptome()"><big>Odstrani vse</big></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <big style="font-weight: bold; background-color:white;"><big><br>
+      </big></big>
+      <table style="text-align: left; width: 100%; background-color:white;" border="0" cellpadding="2" cellspacing="2">
+        <tbody>
+           <big><b>
+          <tr>
+           
+            <td id="izpisSimptomov" style="vertical-align: top; font-weight: bold;">
+            </td>
+          </tr>
+          </b></big>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<button name="gumb_dodajnovzapis" class="btn btn-primary btn-small" onclick="poizvedbaZaZdravilaSTART();">Naredi poizvedbo za zdravila na podlagi simptomov</button>
+<table id="izpisVsehZdravilT" style="text-align: left; width: 100%; background-color:white;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td id="izpisVsehZdravil">
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<!-- ################################################################################################################################################# -->
+<!-- ################################################################################################################################################# -->
+<!-- ################################################################################################################################################# -->
+
+      </div>
+    </div>
+  </div>
+  <!-- KONEC: Vsebina aplikacije -->
+
+</body>
+</html>
